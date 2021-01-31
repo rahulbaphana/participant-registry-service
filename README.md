@@ -32,7 +32,7 @@ phone calls. All communication with will include participant `reference id`.
     - Validation includes asking for participants `date of birth` while removing personal details.
     - This means removing the participant personal details from the `personal_details` table.
     - There will be a `change log` table available in case the study needs to retrieve old participant data.
-[NOTE: The `reference id` for a participant will not get updated at any given point by this service.]
+[NOTE: The `reference id` for a participant will not get updated at any given point by this service post creation.]
 
 
 -------------------------------------------
