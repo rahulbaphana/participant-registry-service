@@ -63,8 +63,7 @@ public class TestContainerInitializer implements ApplicationContextInitializer<C
         container = new DockerComposeContainer(new File(tempDirectory.toFile(), "testcontainer-compose.yml"));
         log.info("Container starting");
         container.start();
-        Thread.sleep(2000L);
-
+        Thread.sleep(500L);
     }
 
     private void registerCleanupListener(ConfigurableApplicationContext applicationContext) {
