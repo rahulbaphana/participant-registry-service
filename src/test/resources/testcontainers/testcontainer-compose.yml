@@ -1,0 +1,11 @@
+version: '3.7'
+services:
+  postgres-db:
+    image: postgres:10.5
+    restart: unless-stopped
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_DB: participant_db
+      POSTGRES_USER: participant_db_user
+      POSTGRES_PASSWORD: participant_db_password

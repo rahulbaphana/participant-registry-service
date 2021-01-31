@@ -1,0 +1,56 @@
+spring:
+  application:
+    name: participant-resgistry-service
+    short-host-value: ${ENV_HOST}
+  flyway:
+    url: ${ENV_DATASOURCE_URL}
+    user: ${ENV_DATASOURCE_FLYWAY_USER}
+    password: ${ENV_DATASOURCE_FLYWAY_PASSWORD}
+    locations: classpath:db/migrations
+  datasource:
+    url: ${ENV_DATASOURCE_URL}
+    username: ${ENV_DATASOURCE_USER}
+    password: ${ENV_DATASOURCE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    platform: postgres
+  jpa:
+    database: POSTGRESQL
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        jdbc:
+          lob.non_contextual_creation: true
+          time_zone: UTC
+    open-in-view: false
+
+postgres-db:
+  datasource:
+    url: ${ENV_DATASOURCE_URL}
+    username: ${ENV_DATASOURCE_USER}
+    password: ${ENV_DATASOURCE_PASSWORD}
+    hikari:
+      transaction-isolation: TRANSACTION_READ_COMMITTED
+      pool-name: hikari.service_template_postgres
+      driverClassName: org.postgresql.Driver
+  flyway:
+    baseline-on-migrate: true
+    locations: classpath:db/postgres-migration
+    url: ${postgres-db.datasource.url}
+    user: ${ENV_DATASOURCE_FLYWAY_USER}
+    password: ${ENV_DATASOURCE_FLYWAY_PASSWORD}
+---
+
+spring:
+  profiles: development, local, integration
+
+ENV_DATASOURCE_HOST: localhost
+ENV_DATASOURCE_DB_NAME: participant_db
+ENV_DATASOURCE_URL: jdbc:postgresql://${ENV_DATASOURCE_HOST}:5432/${ENV_DATASOURCE_DB_NAME}
+ENV_DATASOURCE_USER: participant_db_user
+ENV_DATASOURCE_PASSWORD: participant_db_password
+ENV_DATASOURCE_FLYWAY_USER: participant_db_user
+ENV_DATASOURCE_FLYWAY_PASSWORD: participant_db_password
+ENV_HOST: localhost:8080
