@@ -6,6 +6,7 @@ import com.participant.registry.support.DateUtil;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class ParticipantRepositoryTest extends BaseIntegrationTest {
     @Test
@@ -24,6 +25,8 @@ public class ParticipantRepositoryTest extends BaseIntegrationTest {
         Participant savedJohnDoeRecord = participantRepository.findByReferenceNumber(johnDoe.getReferenceNumber());
 
         // Then
+        assertNotNull(savedJohnDoeRecord.getCreatedDate());
+        assertNotNull(savedJohnDoeRecord.getModifiedDate());
         assertEquals("KFG-123", savedJohnDoeRecord.getReferenceNumber());
         assertEquals("John Doe", savedJohnDoeRecord.getName());
         assertEquals("0778956655", savedJohnDoeRecord.getPhoneNumber());

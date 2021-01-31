@@ -13,7 +13,6 @@ import java.util.Date;
 @Getter
 @Entity
 @Builder
-//@Audited
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
